@@ -312,32 +312,18 @@ def main():
             if event.type == pygame.QUIT:
                 run = False
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_1:
-                    key = 1
-                if event.key == pygame.K_2:
-                    key = 2
-                if event.key == pygame.K_3:
-                    key = 3
-                if event.key == pygame.K_4:
-                    key = 4
-                if event.key == pygame.K_5:
-                    key = 5
-                if event.key == pygame.K_6:
-                    key = 6
-                if event.key == pygame.K_7:
-                    key = 7
-                if event.key == pygame.K_8:
-                    key = 8
-                if event.key == pygame.K_9:
-                    key = 9
-                if event.key == pygame.K_DELETE:
-                    board.clear()
-                    key = None
+                if 48 < event.key < 57:
+                    key = event.key - 48
+                    # keycodes 49-57 are digits
 
-                if event.key == pygame.K_SPACE:
+                elif event.key == pygame.K_DELETE:
+                    board.clear()
+                    key = None 
+
+                elif event.key == pygame.K_SPACE:
                     board.solve_gui()
 
-                if event.key == pygame.K_RETURN:
+                elif event.key == pygame.K_RETURN:
                     i, j = board.selected
                     if board.cubes[i][j].temp != 0:
                         if board.place(board.cubes[i][j].temp):
